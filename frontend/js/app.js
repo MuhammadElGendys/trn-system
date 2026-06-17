@@ -26,19 +26,7 @@ class App {
     // Set up tab switching functionality between Dashboard, Live Data, Control, etc.
     this.ui.initTabs();
 
-    // Generate and display the calendar grid
-    this.calendar.generateCalendar();
 
-    // Attach event listeners to calendar navigation buttons
-    const prevMonthBtn = document.getElementById('prevMonth');
-    const nextMonthBtn = document.getElementById('nextMonth');
-
-    if (prevMonthBtn) {
-      prevMonthBtn.addEventListener('click', () => this.calendar.previousWeek());
-    }
-    if (nextMonthBtn) {
-      nextMonthBtn.addEventListener('click', () => this.calendar.nextWeek());
-    }
 
     // Set up event listeners for all control toggles (Robot Arm, Belt, Sensors)
     this.controls.initToggles();
