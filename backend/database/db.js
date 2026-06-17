@@ -6,7 +6,7 @@ const sqlite3 = require("sqlite3").verbose();
 // Construct absolute path to database file
 // __dirname = directory of current file
 // This creates/opens plc_data.db in the same directory as this file
-const dbPath = path.join(__dirname, "plc_data.db");
+const dbPath = path.join(__dirname, "backend/database/plc_data");
 
 // Open or create SQLite database connection
 // If database doesn't exist, SQLite automatically creates it
