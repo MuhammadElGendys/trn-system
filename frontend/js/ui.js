@@ -72,6 +72,14 @@ class UIManager {
       }
     }
 
+    // ===== UPDATE SYSTEM ACTIVATION TOGGLE =====
+    // Sync the toggle button with the actual motorRun status from database
+    const systemActivationControl = document.getElementById('systemActivationControl');
+    if (systemActivationControl) {
+      // Set checkbox checked state to match motorRun status
+      systemActivationControl.checked = !!data.motorRun;
+    }
+
     // ===== UPDATE PLACEHOLDER VALUES =====
     // Val1: Motor Run Status (1 = running, 0 = stopped)
     // Get the Val1 element from DOM and update it with motorRun status

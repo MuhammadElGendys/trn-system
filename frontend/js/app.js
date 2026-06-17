@@ -3,11 +3,10 @@
  * Orchestrates all components and manages initialization and data polling
  */
 class App {
-  constructor(apiUrl = CONFIG.BACKEND_URL) {
+  constructor(apiUrl = CONFIG.BACKEND_URL, nodeRedUrl = CONFIG.NODE_RED_URL) {
     // Initialize all modules
-    this.apiClient = new ApiClient(apiUrl);
+    this.apiClient = new ApiClient(apiUrl, nodeRedUrl);
     this.chartManager = new ChartManager();
-    this.calendar = new Calendar();
     this.ui = new UIManager(this.chartManager);
     this.controls = new ControlPanel(this.apiClient);
 
@@ -26,6 +25,13 @@ class App {
 
     // Set up tab switching functionality between Dashboard, Live Data, Control, etc.
     this.ui.initTabs();
+
+    // Generate and display the calendar grid
+    this.calendar.generateCalendar();
+
+    // Attach event listeners to calendar navigation buttons
+    const prevMonthBtn = document.getElementById('prevMonth');
+    const nextMonthBtn = document.getElementById('nextMonth');
 
     if (prevMonthBtn) {
       prevMonthBtn.addEventListener('click', () => this.calendar.previousWeek());

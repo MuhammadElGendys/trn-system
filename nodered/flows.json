@@ -360,8 +360,29 @@
         "wires": [
             [
                 "57866eefb0835de8",
-                "32f522ab016c1ba5"
+                "32f522ab016c1ba5",
+                "http_post_to_backend"
             ]
+        ]
+    },
+    {
+        "id": "http_post_to_backend",
+        "type": "http request",
+        "z": "74495d5772959a6b",
+        "name": "POST to Backend API",
+        "method": "POST",
+        "ret": "obj",
+        "url": "http://localhost:3000/api/data",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "x": 1130,
+        "y": 40,
+        "wires": [
+            []
         ]
     },
     {

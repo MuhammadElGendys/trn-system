@@ -34,7 +34,11 @@
 const CONFIG = {
   // Backend URL - Where Node.js Express server is running
   // Update this to match your backend server IP and port
-  BACKEND_URL: "http://192.168.178.187:3000",
+  BACKEND_URL: "http://localhost:3000",
+
+  // Node-RED URL - Where Node-RED is running (for direct data/control)
+  // Update this to match your Node-RED server IP and port
+  NODE_RED_URL: "http://localhost:1880",
 
   // Add other configuration variables as needed
   // Example:

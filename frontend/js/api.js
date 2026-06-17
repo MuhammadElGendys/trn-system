@@ -3,12 +3,13 @@
  * Handles all backend API communication
  */
 class ApiClient {
-  constructor(apiUrl) {
+  constructor(apiUrl, nodeRedUrl) {
     this.apiUrl = apiUrl;
+    this.nodeRedUrl = nodeRedUrl;
   }
 
   /**
-   * Fetch latest data from backend API
+   * Fetch latest data from Node-RED API
    * Returns the most recent PLC data received from Node-RED
    * 
    * Data includes:
@@ -23,24 +24,24 @@ class ApiClient {
    */
   async fetchLatest() {
     try {
-      const response = await fetch(`${this.apiUrl}/api/latest`);
+      const response = await fetch(`${this.nodeRedUrl}/api/latest`);
 
       if (!response.ok) {
-        console.error('API error:', response.status);
+        console.error('Node-RED API error:', response.status);
         return null;
       }
 
       const data = await response.json();
       return data;
     } catch (err) {
-      console.error('Error fetching latest data:', err);
+      console.error('Error fetching latest data from Node-RED:', err);
       return null;
     }
   }
 
   /**
-   * Send control command to backend
-   * Forwards control request to Node-RED for PLC output
+   * Send control command to Node-RED
+   * Forwards control request directly to Node-RED for PLC output
    * 
    * Format: { variable: name, value: boolean }
    * Examples:
@@ -58,9 +59,9 @@ class ApiClient {
         value: value
       };
 
-      console.log('Sending control command:', payload);
+      console.log('Sending control command to Node-RED:', payload);
 
-      const response = await fetch(`${this.apiUrl}/api/control`, {
+      const response = await fetch(`${this.nodeRedUrl}/api/control`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
